@@ -8,13 +8,9 @@ var createError = require('http-errors');
  var session = require('express-session');
  var bodyParser = require('body-parser');
 
- var mysql = require('mysql');
- var connection  = require('./lib/db');
 
  var indexRouter = require('./routes/index');
- var usersRouter = require('./routes/users');
- var pilotsRouter = require('./routes/pilots');
-
+ 
  var app = express();
 
 // view engine setup
@@ -37,11 +33,8 @@ var createError = require('http-errors');
  app.use(flash());
  app.use(expressValidator());
 
- app.use('/', indexRouter);
- app.use('/users', usersRouter);
- app.use('/pilots', pilotsRouter);
-
- // catch 404 and forward to error handler
+ app.use('/', indexRouter); 
+  // catch 404 and forward to error handler
  app.use(function(req, res, next) {
    next(createError(404));
  });
