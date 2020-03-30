@@ -3,11 +3,16 @@ var router = express.Router();
 const youtubedl = require('youtube-dl')
 
 /* GET home page. */
-router.get('/gety', async (req, res)=> {
+router.get('/watch', async (req, res)=> {
   try {
  // res.render('index', { data: 'Express' });
-var q= req.sanitize('search').escape().trim();
-var video_id = q.split('v=')[1];
+ var q= req.sanitize('v').escape().trim();
+ console.log(q)
+ q=q.split("=")
+ if(q.length==2)
+ q=q[1]
+ console.log(q)
+ var video_id = q
 var ampersandPosition = video_id.indexOf('&');
 if(ampersandPosition != -1) {
   video_id = video_id.substring(0, ampersandPosition);
